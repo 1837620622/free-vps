@@ -6,11 +6,10 @@
 FROM ghcr.io/vevc/ubuntu:25.7.14
 
 # ============================================================
-# 环境变量配置（密码通过Railway环境变量设置，不要硬编码）
+# 环境变量配置
 # ============================================================
 ENV SSH_USER=ck
 ENV DEBIAN_FRONTEND=noninteractive
-# SSH_PASSWORD 需要在部署平台设置环境变量，不要写在代码中
 
 # ============================================================
 # 创建用户和配置SSH
@@ -29,8 +28,9 @@ RUN apt-get update && apt-get install -y \
 # 创建SSH目录
 RUN mkdir -p /var/run/sshd
 
-# 创建用户（密码在启动时通过环境变量设置）
+# 创建用户并设置密码
 RUN useradd -m -s /bin/bash ${SSH_USER} || true \
+    && echo "${SSH_USER}:WOzck20021223." | chpasswd \
     && usermod -aG sudo ${SSH_USER} \
     && echo "${SSH_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
@@ -52,9 +52,6 @@ RUN curl -sk -o /home/${SSH_USER}/.bashrc https://raw.githubusercontent.com/vevc
 EXPOSE 22
 
 # ============================================================
-# 启动脚本（运行时设置密码）
+# 启动SSH服务
 # ============================================================
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-CMD ["/entrypoint.sh"]
+CMD ["/usr/sbin/sshd", "-D"]
