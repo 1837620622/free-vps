@@ -1,15 +1,22 @@
 <div align="center">
 
-# 🖥️ Railway VPS
+# 🖥️ Free VPS & Container Services
 
 <p align="center">
-  <strong>使用 Railway 容器实现免费 VPS</strong>
+  <strong>免费容器/VPS服务汇总 | 25+ 平台详细对比</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Docker-Ubuntu-2496ED?style=for-the-badge&logo=docker" alt="Docker" />
-  <img src="https://img.shields.io/badge/Railway-VPS-0B0D0E?style=for-the-badge&logo=railway" alt="Railway" />
-  <img src="https://img.shields.io/badge/SSH-Enabled-green?style=for-the-badge" alt="SSH" />
+  <img src="https://img.shields.io/badge/Platforms-25+-violet?style=for-the-badge" alt="Platforms" />
+  <img src="https://img.shields.io/badge/Updated-2025-green?style=for-the-badge" alt="Updated" />
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker" alt="Docker" />
+</p>
+
+<p align="center">
+  <a href="#-top-recommendations">🌟 推荐平台</a> •
+  <a href="#-docker-container-platforms">🐳 Docker容器</a> •
+  <a href="#-free-vps-trials">💻 免费VPS</a> •
+  <a href="#-tunnel-solutions">🔧 隧道方案</a>
 </p>
 
 </div>
@@ -18,83 +25,136 @@
 
 ## 📖 项目说明
 
-使用 Railway 容器服务部署一个 Ubuntu VPS，支持 SSH 远程连接。
+收集全网免费容器/VPS服务，帮助开发者实现 **VPS 自由**。包含 Docker 容器托管、永久免费 VPS、SSH 隧道方案等。
 
-## 🔧 配置信息
+> 📄 **详细中文文档**: [免费容器VPS服务汇总.md](./免费容器VPS服务汇总.md)
 
-| 配置项 | 值 |
-|--------|-----|
-| **镜像** | ghcr.io/vevc/ubuntu:25.7.14 |
-| **用户名** | ck |
-| **密码** | change-me |
-| **挂载路径** | /home/ck |
+---
 
-## 🚀 部署步骤
+## 🌟 Top Recommendations
 
-### 1. 初始化 Railway 项目
+| 平台 | 免费额度 | SSH/TCP | Docker | 推荐度 |
+|------|----------|---------|--------|--------|
+| [**Fly.io**](https://fly.io) | $5/月永久 | ✅ | ✅ | ⭐⭐⭐⭐⭐ |
+| [**GitHub Codespaces**](https://github.com/features/codespaces) | 120小时/月 | ✅ | ✅ | ⭐⭐⭐⭐⭐ |
+| [**Oracle Cloud**](https://cloud.oracle.com/free) | 永久免费 | ✅ | ✅ | ⭐⭐⭐⭐⭐ |
+| [**Serv00**](https://serv00.com) | 永久免费 | ✅ | ❌ | ⭐⭐⭐⭐ |
+| [**Gitpod**](https://gitpod.io) | 50小时/月 | ✅ | ✅ | ⭐⭐⭐⭐ |
+
+---
+
+## 🐳 Docker Container Platforms
+
+| 平台 | 免费额度 | TCP | 特点 |
+|------|----------|-----|------|
+| [Railway](https://railway.app) | $5/月 | 付费 | 简单易用，自动部署 |
+| [Koyeb](https://koyeb.com) | $5.5/月 | 部分 | 全球边缘部署 |
+| [Render](https://render.com) | 有限制 | ❌ | 稳定，自动 SSL |
+| [Zeabur](https://zeabur.com) | 开发者免费 | ❌ | 中国访问快 |
+| [Back4app](https://back4app.com) | 免费 | ❌ | Parse 后端支持 |
+| [Northflank](https://northflank.com) | 2个服务 | ❌ | Kubernetes 驱动 |
+| [Hugging Face](https://huggingface.co/spaces) | 免费 CPU | ❌ | AI/ML 专用 |
+
+---
+
+## 💻 Free VPS Trials
+
+| 平台 | 免费额度 | 配置 | 时限 |
+|------|----------|------|------|
+| [Oracle Cloud](https://cloud.oracle.com/free) | 永久 | 4核24GB ARM | ♾️ |
+| [Google Cloud](https://cloud.google.com/free) | 永久 | e2-micro | ♾️ |
+| [EUserv](https://euserv.com) | 永久 | 1核1GB (IPv6) | ♾️ |
+| [Kamatera](https://kamatera.com) | $100 | 可选配置 | 30天 |
+| [DigitalOcean](https://digitalocean.com) | $200 | Droplet | 60天 |
+| [AWS](https://aws.amazon.com/free) | t2.micro | 1核1GB | 12个月 |
+
+---
+
+## 🔧 Tunnel Solutions
+
+让不支持 TCP 的平台也能 SSH：
 
 ```bash
-# 进入项目目录
-cd Railway-VPS
+# Cloudflare Tunnel
+cloudflared tunnel --url ssh://localhost:22
 
-# 登录 Railway
+# Ngrok
+ngrok tcp 22
+
+# Tailscale (推荐)
+tailscale up
+ssh user@100.x.x.x
+```
+
+---
+
+## 📁 项目文件
+
+```
+📦 free-vps
+├── README.md                    # 快速指南
+├── 免费容器VPS服务汇总.md        # 详细中文文档
+├── Dockerfile                   # Docker VPS 配置
+├── entrypoint.sh               # 启动脚本
+├── railway.json                # Railway 配置
+└── .env.example                # 环境变量示例
+```
+
+---
+
+## 🚀 Quick Deploy (Docker VPS)
+
+```bash
+# 克隆项目
+git clone https://github.com/1837620622/free-vps.git
+cd free-vps
+
+# 设置环境变量
+cp .env.example .env
+# 编辑 .env 设置 SSH_PASSWORD
+
+# 部署到 Fly.io
+flyctl launch
+flyctl deploy
+
+# 或部署到 Railway
 railway login
-
-# 初始化项目
 railway init
-
-# 部署
+railway variables --set "SSH_PASSWORD=your_password"
 railway up
 ```
 
-### 2. 配置 TCP 代理（获取公网端口）
+---
 
-Railway 默认只支持 HTTP/HTTPS，需要配置 TCP 代理才能使用 SSH：
+## 🎯 推荐组合
 
-1. 进入 Railway Dashboard
-2. 选择你的服务
-3. Settings → Networking → Add TCP Proxy
-4. 端口填写 `22`
-5. 保存后会获得公网地址
-
-### 3. SSH 连接
-
-```bash
-# 使用 Railway 提供的公网地址连接
-ssh ck@<railway-tcp-proxy-address> -p <port>
-
-# 密码: change-me
-```
-
-## 📁 项目结构
-
-```
-📦 Railway-VPS
-├── 📄 Dockerfile      # Docker 镜像配置
-├── 📄 railway.json    # Railway 部署配置
-└── 📄 README.md       # 说明文档
-```
-
-## ⚠️ 注意事项
-
-1. **Railway 免费额度有限** - 每月 $5 额度
-2. **TCP 代理需要付费计划** - 免费计划可能不支持
-3. **数据持久化** - 需要配置 Volume 挂载
-
-## 🔄 替代方案
-
-如果 Railway 不支持 TCP 代理，可以考虑：
-
-| 平台 | 特点 |
-|------|------|
-| **Render** | 支持 Docker，有免费额度 |
-| **Fly.io** | 支持 Docker + TCP |
-| **Koyeb** | 支持 Docker，全球节点 |
-| **Hugging Face Spaces** | 免费 Docker 部署 |
+| 场景 | 推荐方案 |
+|------|----------|
+| **真正的 VPS** | Oracle Cloud / Fly.io |
+| **临时开发** | GitHub Codespaces / Gitpod |
+| **Web 部署** | Vercel (前端) + Railway (后端) |
+| **Docker 容器** | Fly.io / Hugging Face |
 
 ---
 
 <div align="center">
-  <p>Made with ❤️ by 传康kk</p>
-  <p>Vx: 1837620622 | Email: 2040168455@qq.com</p>
+
+### 📬 联系方式
+
+| 平台 | 联系 |
+|------|------|
+| 💬 WeChat | 1837620622 |
+| 📧 Email | 2040168455@qq.com |
+| 👤 Author | 传康kk |
+| 📺 Bilibili | 万能程序员 |
+
+---
+
+<p>
+  <img src="https://img.shields.io/badge/Made_with-❤️-ff69b4?style=for-the-badge" alt="Made with love" />
+  <img src="https://img.shields.io/badge/by-传康kk-8B5CF6?style=for-the-badge" alt="by 传康kk" />
+</p>
+
+⭐ 如果有帮助，请给个 Star！
+
 </div>
