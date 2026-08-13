@@ -1,0 +1,14 @@
+name: KeepAlive
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Fly.io App
+        run: |
+          curl -I "http://free-vps1012634734.fly.dev:25500/sub?target=clash&url=https%3A%2F%2Fedgetunnel-db-54x.pages.dev%2Fsub%3Ftoken%3D2212ba9a24e8ee2fe6d4b7576028a8ff&insert=false"
